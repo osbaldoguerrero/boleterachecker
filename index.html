@@ -1,0 +1,303 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="theme-color" content="#10252b" />
+  <meta name="description" content="Panel de consulta de ocupación del evento 1373 de Mis Tickets." />
+  <title>Boletaje en vivo · Evento 1373</title>
+  <style>
+    :root { color-scheme: dark; --bg:#0b171b; --panel:#10262a; --line:#29454a; --text:#f4faf9; --muted:#9db5b6; --bright:#29ebb5; --accent:#13917d; --warn:#ffc980; --danger:#ff9b92; }
+    * { box-sizing:border-box; }
+    body { margin:0; min-width:320px; font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; color:var(--text); background:radial-gradient(ellipse 70% 30% at 70% -5%,rgba(20,145,125,.33),transparent 85%),radial-gradient(ellipse 50% 38% at 0% 100%,rgba(32,101,113,.25),transparent 90%),var(--bg); line-height:1.45; }
+    .shell { max-width:1160px; padding:28px 24px 70px; margin:0 auto; }
+    .top { display:flex; align-items:center; justify-content:space-between; gap:18px; margin-bottom:35px; }
+    .brand { display:flex; gap:13px; align-items:center; }
+    .logo { display:grid; place-items:center; width:46px; height:46px; border-radius:15px; background:linear-gradient(135deg,#13917d,#29ebb5); color:#082522; box-shadow:0 7px 28px #29ebb52b; flex-shrink:0; }
+    .brand strong { font-size:16px; letter-spacing:-.03em; }
+    .brand small { display:block; color:var(--muted); font-size:11px; letter-spacing:.13em; text-transform:uppercase; margin-top:1px; }
+    .eventlink { color:#c5ddd9; text-decoration:none; font-size:13px; border-bottom:1px solid #577c7b; padding-bottom:3px; }
+    .eventlink:hover { color:var(--bright); }
+    .kicker { display:flex; gap:9px; align-items:center; font-size:12px; text-transform:uppercase; letter-spacing:.15em; color:#abdfd4; font-weight:700; }
+    .pulse { display:inline-block; width:8px; height:8px; background:var(--bright); border-radius:99px; box-shadow:0 0 0 4px #29ebb51b; }
+    h1 { font-size:clamp(30px,5vw,52px); line-height:1.12; margin:11px 0 10px; letter-spacing:-.055em; font-weight:750; }
+    .intro { color:var(--muted); font-size:15px; max-width:670px; margin:0; }
+    .actions { display:flex; gap:10px; align-items:center; flex-wrap:wrap; margin:24px 0 18px; }
+    button { border:1px solid #37565b; color:var(--text); background:#20383e; border-radius:11px; font-size:13px; font-weight:700; padding:12px 16px; cursor:pointer; transition:transform .14s,border .14s,background .14s; }
+    button:hover:not(:disabled) { transform:translateY(-1px); border-color:#69b9ae; background:#284a4e; }
+    button:disabled { opacity:.48; cursor:wait; }
+    button.primary { color:#06332e; background:linear-gradient(105deg,#24c8a0,#32f0b9); border:1px solid transparent; box-shadow:0 9px 25px #0bbc8422; }
+    button.primary:hover:not(:disabled) { background:#5af5cb; }
+    button svg { vertical-align:middle; margin-right:6px; }
+    .stamp { color:var(--muted); font-size:12px; }
+    .status { display:flex; gap:9px; border:1px solid #345459; border-radius:11px; background:#112b30b3; padding:12px 15px; font-size:13px; color:#bcd2d1; margin-bottom:22px; }
+    .status.success { color:#a6f1da; border-color:#287a68; }
+    .status.error { color:#ffcecb; background:#4c252738; border-color:#8e4340; }
+    .status.warning { color:#ffe1ae; border-color:#937344; }
+    .summary { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:14px; }
+    .metric { border:1px solid var(--line); border-radius:18px; padding:22px 21px; min-width:0; background:linear-gradient(140deg,#163139ee,#11262bee); box-shadow:0 12px 30px #0000000b; }
+    .metric.feature { border-color:#237a68; background:linear-gradient(145deg,#20564c,#123a38); }
+    .metric .lab { font-size:13px; color:#b1caca; }
+    .metric .num { font-size:clamp(27px,3.6vw,42px); letter-spacing:-.06em; font-weight:750; line-height:1.2; margin:13px 0 2px; font-variant-numeric:tabular-nums; }
+    .metric.feature .num { color:#7ff5cd; }
+    .metric .foot { font-size:11px; color:#8facac; margin-top:5px; }
+    .columns { display:grid; grid-template-columns:1.5fr 1fr; gap:16px; margin-top:18px; }
+    .panel { background:#10252bdd; border:1px solid var(--line); border-radius:19px; padding:22px; min-width:0; }
+    .panelhead { display:flex; justify-content:space-between; gap:12px; align-items:start; margin-bottom:17px; }
+    h2 { font-size:17px; letter-spacing:-.025em; margin:0; font-weight:710; }
+    .sub { color:var(--muted); font-size:12px; margin-top:3px; }
+    .section-list { display:grid; gap:16px; }
+    .zonehead { display:flex; justify-content:space-between; gap:8px; align-items:baseline; }
+    .zonetitle { font-size:13px; font-weight:690; }
+    .zoneinfo { color:#b3c9c7; font-size:12px; font-variant-numeric:tabular-nums; }
+    .track { background:#2c494c; height:9px; border-radius:50px; overflow:hidden; margin:7px 0 4px; }
+    .track i { display:block; height:100%; border-radius:50px; background:linear-gradient(90deg,#108d79,#2eeabb); transition:width .3s; }
+    .zonefoot { font-size:11px; color:#87a5a6; }
+    .history-empty { color:#8eaeae; background:#173036; padding:35px 18px; border-radius:13px; text-align:center; font-size:13px; }
+    #chart { min-height:195px; }
+    #chart svg { display:block; width:100%; height:auto; }
+    .deltas { display:grid; grid-template-columns:repeat(2,1fr); gap:10px; margin:19px 0 14px; }
+    .delta { border:1px solid var(--line); background:#18333a; border-radius:13px; padding:13px; }
+    .delta .value { font-size:25px; letter-spacing:-.04em; font-variant-numeric:tabular-nums; font-weight:730; }
+    .delta .lbl { font-size:11px; color:#9cbdba; }
+    .fine { font-size:11px; color:#92aaab; line-height:1.55; }
+    .tablewrap { overflow-x:auto; -webkit-overflow-scrolling:touch; }
+    .mobilehint { display:none; color:#90b3b0; font-size:11px; margin:0 0 10px; }
+    table { width:100%; border-collapse:collapse; white-space:nowrap; font-size:12.5px; }
+    th { color:#8fb0af; font-size:11px; letter-spacing:.03em; font-weight:650; text-align:right; padding:10px; border-bottom:1px solid #365158; }
+    td { text-align:right; padding:13px 10px; border-bottom:1px solid #213a40; font-variant-numeric:tabular-nums; }
+    th:first-child,td:first-child { text-align:left; }
+    tr:last-child td { border-bottom:none; }
+    tfoot td { font-weight:750; border-top:1px solid #54716f !important; color:#b2eddc; }
+    .tag { font-size:10px; padding:3px 7px; border-radius:5px; background:#24444a; color:#a8d3d0; margin-right:7px; }
+    .footnote { color:#92a9a8; font-size:12px; line-height:1.7; margin:20px 0 0; }
+    .footnote strong { color:#c4dcd7; }
+    .empty { color:var(--muted); padding:14px 0; font-size:13px; }
+    .snapshots { margin-top:8px; font-size:11px; color:#97b5b3; }
+    .loading { animation:pulse 1s infinite alternate; }
+    @keyframes pulse { from{ opacity:.5 } to{ opacity:1 } }
+    @media(max-width:850px) { .summary { grid-template-columns:repeat(2,minmax(0,1fr)); } .columns { grid-template-columns:1fr; } }
+    @media(max-width:520px) { .mobilehint{display:block;} .shell { padding:18px 15px 45px; } .top { margin-bottom:30px; } .eventlink { font-size:11px; } .metric { padding:16px; border-radius:15px; } .panel { padding:17px; } .actions button { flex:1; } .stamp { width:100%; } .summary { gap:10px; } .brand strong { font-size:14px; } .brand small { font-size:10px; } .logo { width:41px; height:41px; } }
+    @media(prefers-reduced-motion:reduce) { *,*::before,*::after { animation:none!important; transition:none!important; } }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <header class="top">
+      <div class="brand">
+        <div class="logo" aria-hidden="true">
+          <svg width="27" height="27" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 9a3 3 0 0 0 0 6v3a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-3a3 3 0 0 1 0-6V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v3Z"/><path d="M13 4v2m0 4v4m0 4v2"/></svg>
+        </div>
+        <div><strong>Control de boletaje</strong><small>Panel independiente</small></div>
+      </div>
+      <a class="eventlink" href="https://mistickets.com.mx/evento/1373/#0" target="_blank" rel="noopener noreferrer">Ver evento ↗</a>
+    </header>
+
+    <section>
+      <div class="kicker"><span class="pulse"></span> Mis Tickets · Evento 1373</div>
+      <h1>Ocupación en tiempo real<span style="color:var(--bright)">.</span></h1>
+      <p class="intro">Consulta los asientos ocupados y disponibles de todas las secciones sin recorrer manualmente el mapa de la boletera.</p>
+      <div class="actions">
+        <button id="refresh" class="primary" type="button">↻ &nbsp; Actualizar datos</button>
+        <button id="csv" type="button" disabled>↓ &nbsp; Exportar CSV</button>
+        <button id="historyCsv" type="button" disabled>↓ &nbsp; Historial CSV</button>
+        <span class="stamp" id="stamp">Aún sin consulta</span>
+      </div>
+      <div class="status" id="status" role="status" aria-live="polite">Conectando con la API de Mis Tickets…</div>
+    </section>
+
+    <section class="summary" aria-label="Indicadores generales">
+      <div class="metric feature"><div class="lab">Asientos ocupados</div><div class="num" id="occupied">—</div><div class="foot">Estado 1 · no implica venta confirmada</div></div>
+      <div class="metric"><div class="lab">Asientos disponibles</div><div class="num" id="available">—</div><div class="foot">Estado 0</div></div>
+      <div class="metric"><div class="lab">Ocupación aparente</div><div class="num" id="percentage">—</div><div class="foot">Ocupados / (ocupados + disponibles)</div></div>
+      <div class="metric"><div class="lab">Aforo considerado</div><div class="num" id="capacity">—</div><div class="foot"><span id="excluded">—</span> registros fuera del conteo (−1)</div></div>
+    </section>
+
+    <div class="columns">
+      <section class="panel">
+        <div class="panelhead"><div><h2>Ocupación por sección</h2><div class="sub">Porcentajes sobre lugares con estado 0 o 1</div></div></div>
+        <div id="zones" class="section-list"><div class="empty loading">Esperando información…</div></div>
+      </section>
+      <section class="panel">
+        <div class="panelhead"><div><h2>Evolución de la ocupación</h2><div class="sub">Historial guardado en este navegador</div></div></div>
+        <div id="chart"><div class="history-empty">La gráfica aparecerá después de tener dos consultas registradas.</div></div>
+        <div class="deltas">
+          <div class="delta"><div class="value" id="newOccupied">—</div><div class="lbl">De disponible a ocupado</div></div>
+          <div class="delta"><div class="value" id="freed">—</div><div class="lbl">De ocupado a disponible</div></div>
+        </div>
+        <div id="diffNote" class="fine">Necesitamos al menos dos consultas en este navegador para detectar cambios por asiento.</div>
+        <div class="snapshots" id="snapshots"></div>
+      </section>
+    </div>
+
+    <section class="panel" style="margin-top:18px">
+      <div class="panelhead"><div><h2>Detalle de secciones</h2><div class="sub">Precio base y cargo de servicio incluidos en la respuesta pública de la API</div></div></div>
+      <div class="mobilehint">← Desliza horizontalmente para ver precios y más columnas →</div>
+      <div class="tablewrap">
+        <table>
+          <thead><tr><th>Sección</th><th>Ocupados</th><th>Disponibles</th><th>Ocupación</th><th>Precio base</th><th>Cargo</th><th>Precio público</th></tr></thead>
+          <tbody id="detail"><tr><td colspan="7" style="text-align:left;color:#92abaa">Esperando información…</td></tr></tbody>
+          <tfoot id="detailFoot"></tfoot>
+        </table>
+      </div>
+    </section>
+
+    <p class="footnote"><strong>Interpretación:</strong> la comprobación visual confirmó que el estado <strong>0</strong> indica disponible, <strong>1</strong> indica ocupado y que un registro <strong>−1</strong> no aparecía en el mapa. El panel excluye los −1 del aforo provisional. Ocupado <strong>no significa necesariamente vendido</strong>: pueden existir bloqueos, cortesías o retenciones. Los cambios entre consultas no equivalen por sí solos a ventas netas confirmadas. La información proviene de una API externa y puede cambiar sin aviso. El historial se almacena <strong>solo en este navegador</strong> y no se sincroniza entre dispositivos.</p>
+  </div>
+  <script>
+  (() => {
+    'use strict';
+    const EVENT = '1373';
+    const CATEGORY_IDS = [155,156,157,158];
+    const API = 'https://v1.mistickets.com.mx/api/v2';
+    const KEY = 'mistickets-ocupacion-' + EVENT + '-v1';
+    const $ = (id) => document.getElementById(id);
+    let report = null;
+    let busy = false;
+    const money = (v) => new Intl.NumberFormat('es-MX',{style:'currency',currency:'MXN',maximumFractionDigits:0}).format(Number(v) || 0);
+    const num = (v) => new Intl.NumberFormat('es-MX').format(v);
+    const percent = (taken, capacity) => capacity ? (100*taken/capacity).toFixed(1) + '%' : '—';
+    const formatDate = (iso) => new Date(iso).toLocaleString('es-MX',{dateStyle:'medium',timeStyle:'short'});
+    const esc = (v) => String(v ?? '').replace(/[&<>"']/g, x=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[x]));
+    const load = () => { try { return JSON.parse(localStorage.getItem(KEY)) || {history:[],latest:null}; } catch { return {history:[],latest:null}; } };
+    let saved = load();
+    if (!Array.isArray(saved.history)) saved.history=[];
+
+    function setStatus(text, type='') {
+      $('status').className='status ' + type;
+      $('status').textContent=text;
+    }
+    async function getData(path) {
+      const controller = new AbortController();
+      const timer = setTimeout(() => controller.abort(),15000);
+      try {
+        const res = await fetch(API + path, {cache:'no-store',credentials:'omit',signal:controller.signal});
+        if (!res.ok) throw new Error(`HTTP ${res.status} en ${path}`);
+        const json = await res.json();
+        if (Number(json.status) !== 200 || !Array.isArray(json.data)) throw new Error(`Formato de API inesperado en ${path}`);
+        return json.data;
+      } finally { clearTimeout(timer); }
+    }
+    function records(rows) {
+      return rows.flat(Infinity).filter(a=>a && typeof a === 'object' && 'status' in a);
+    }
+    async function query() {
+      if (busy) return;
+      busy = true;
+      $('refresh').disabled=true;
+      $('refresh').textContent='Consultando…';
+      setStatus('Leyendo tipos de entrada y secciones…');
+      try {
+        const categories = await Promise.all(CATEGORY_IDS.map(async id => ({id, sections:await getData(`/secciones/${EVENT}/${id}`)})));
+        const sections = categories.flatMap(c=>c.sections.map(s=>({...s, category:c.id})));
+        if (!sections.length) throw new Error('La boletera no devolvió secciones.');
+        setStatus(`Consultando asientos de ${sections.length} secciones…`);
+        const data = await Promise.all(sections.map(async sec=>({sec, seats:records(await getData(`/asientos/${EVENT}/${sec.id}`))})));
+        const allSeats = {};
+        const rows = data.map(({sec,seats})=>{
+          const counts = {occupied:0,available:0,excluded:0,other:0};
+          for (const a of seats) {
+            const state=String(a.status);
+            if (state==='1') counts.occupied++;
+            else if (state==='0') counts.available++;
+            else if (state==='-1') counts.excluded++;
+            else counts.other++;
+            const id=String(sec.id)+':'+String(a.id);
+            if (a.id != null) allSeats[id]=state;
+          }
+          return { id:Number(sec.id), name:String(sec.nombre), category:Number(sec.category), base:Number(sec.precio)||0, fee:Number(sec.cxs)||0, price:Number(sec.total)||0, ...counts, capacity:counts.occupied+counts.available };
+        });
+        const totals = rows.reduce((t,r)=>{for(const key of ['occupied','available','excluded','other','capacity']) t[key]+=r[key];return t;}, {occupied:0,available:0,excluded:0,other:0,capacity:0});
+        if (totals.capacity===0) throw new Error('La respuesta no contiene asientos con estados 0 o 1.');
+        report={at:new Date().toISOString(),rows,totals,states:allSeats};
+        saveSnapshot(report);
+        render();
+        setStatus(`Consulta completa: ${sections.length} secciones actualizadas correctamente.${totals.other ? ` Atención: ${totals.other} estados desconocidos.` : ''}`,totals.other?'warning':'success');
+      } catch(e) {
+        const msg = e.name==='AbortError'?'La consulta excedió 15 segundos.':e.message;
+        setStatus(`No se pudo completar la consulta: ${msg}. Se conservan los datos anteriores.`, 'error');
+        console.error('Consulta de Mis Tickets:',e);
+      } finally {
+        busy=false;
+        $('refresh').disabled=false;
+        $('refresh').textContent='↻   Actualizar datos';
+      }
+    }
+    function saveSnapshot(r) {
+      const prev=saved.latest;
+      const diff={added:0,removed:0,changedOther:0,first:!prev};
+      if (prev?.states) {
+        for(const [key,now] of Object.entries(r.states)) {
+          const before=prev.states[key];
+          if (before==='0' && now==='1') diff.added++;
+          else if (before==='1' && now==='0') diff.removed++;
+          else if (before !== undefined && now !== before) diff.changedOther++;
+        }
+      }
+      r.diff=diff;
+      const snapshot={at:r.at,occupied:r.totals.occupied,available:r.totals.available,capacity:r.totals.capacity};
+      saved.history.push(snapshot);
+      saved.history=saved.history.slice(-500);
+      saved.latest={at:r.at,states:r.states};
+      try { localStorage.setItem(KEY,JSON.stringify(saved)); }
+      catch (e) { setStatus('La consulta funcionó, pero no se pudo guardar el historial local.','warning'); }
+    }
+    function render() {
+      if (!report) return;
+      const {totals,rows,at,diff}=report;
+      $('occupied').textContent=num(totals.occupied);
+      $('available').textContent=num(totals.available);
+      $('capacity').textContent=num(totals.capacity);
+      $('excluded').textContent=num(totals.excluded);
+      $('percentage').textContent=percent(totals.occupied,totals.capacity);
+      $('stamp').textContent='Última consulta: '+formatDate(at);
+      $('csv').disabled=false;
+      $('historyCsv').disabled=false;
+      $('zones').innerHTML=rows.map(r=>{
+        const p=r.capacity?100*r.occupied/r.capacity:0;
+        return `<div><div class="zonehead"><span class="zonetitle">${esc(r.name)}</span><span class="zoneinfo">${num(r.occupied)} / ${num(r.capacity)} · ${percent(r.occupied,r.capacity)}</span></div><div class="track"><i style="width:${p.toFixed(2)}%"></i></div><div class="zonefoot">${num(r.available)} disponibles${r.excluded?` · ${num(r.excluded)} no mostrados`:''}</div></div>`;
+      }).join('');
+      $('detail').innerHTML=rows.map(r=>`<tr><td><span class="tag">${esc(r.category)}</span>${esc(r.name)}</td><td>${num(r.occupied)}</td><td>${num(r.available)}</td><td>${percent(r.occupied,r.capacity)}</td><td>${money(r.base)}</td><td>${money(r.fee)}</td><td>${money(r.price)}</td></tr>`).join('');
+      $('detailFoot').innerHTML=`<tr><td>Total</td><td>${num(totals.occupied)}</td><td>${num(totals.available)}</td><td>${percent(totals.occupied,totals.capacity)}</td><td>—</td><td>—</td><td>—</td></tr>`;
+      $('newOccupied').textContent=diff.first?'—':'+'+num(diff.added);
+      $('freed').textContent=diff.first?'—':num(diff.removed);
+      $('diffNote').textContent=diff.first?'Primera consulta guardada. En la próxima podrás comparar asiento por asiento.':`Comparado con la consulta anterior de este navegador. ${diff.changedOther?diff.changedOther+' asientos cambiaron hacia/desde otros estados. ':''}Los cambios de ocupación no prueban por sí solos una venta pagada.`;
+      $('snapshots').textContent=saved.history.length+' consulta(s) guardada(s) en este dispositivo.';
+      drawChart();
+    }
+    function drawChart() {
+      const points=saved.history.slice(-40);
+      if (points.length<2) { $('chart').innerHTML='<div class="history-empty">La gráfica aparecerá después de tener dos consultas registradas.</div>';return; }
+      const W=700,H=250,padX=48,padTop=15,padBottom=42;
+      const values=points.map(p=>p.occupied);
+      const min=Math.max(0,Math.floor((Math.min(...values)-5)/5)*5);
+      const max=Math.max(min+5,Math.ceil((Math.max(...values)+5)/5)*5);
+      const x=i=>padX+(W-2*padX)*(i/(points.length-1));
+      const y=v=>padTop+(H-padTop-padBottom)*(1-(v-min)/(max-min));
+      const coords=points.map((p,i)=>`${x(i)},${y(p.occupied)}`).join(' ');
+      const area=`${padX},${H-padBottom} ${coords} ${W-padX},${H-padBottom}`;
+      let grid='';
+      for (let i=0;i<=4;i++) { const v=min+(max-min)*i/4;const yy=y(v);grid+=`<line x1="${padX}" y1="${yy}" x2="${W-padX}" y2="${yy}" stroke="#2c484b" stroke-dasharray="4 5"/><text x="${padX-10}" y="${yy+4}" fill="#88aba9" text-anchor="end" font-size="12">${Math.round(v)}</text>`; }
+      const first=esc(new Date(points[0].at).toLocaleDateString('es-MX',{day:'2-digit',month:'short'}));
+      const last=esc(new Date(points[points.length-1].at).toLocaleDateString('es-MX',{day:'2-digit',month:'short'}));
+      $('chart').innerHTML=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Evolución de asientos ocupados en las últimas ${points.length} consultas" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="area" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#29ebb5" stop-opacity=".28"/><stop offset="100%" stop-color="#29ebb5" stop-opacity="0"/></linearGradient></defs>${grid}<polygon points="${area}" fill="url(#area)"/><polyline points="${coords}" fill="none" stroke="#29ebb5" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/><circle cx="${x(points.length-1)}" cy="${y(points[points.length-1].occupied)}" r="5" fill="#29ebb5" stroke="#0d2526" stroke-width="3"/><text x="${padX}" y="${H-12}" fill="#9ab5b2" font-size="12">${first}</text><text x="${W-padX}" y="${H-12}" fill="#9ab5b2" font-size="12" text-anchor="end">${last}</text></svg>`;
+    }
+    function downloadCSV(filename,header,records) {
+      const quote = v => '"'+String(v ?? '').replaceAll('"','""')+'"';
+      const csv='\uFEFF'+[header,...records].map(line=>line.map(quote).join(',')).join('\r\n');
+      const blob=new Blob([csv],{type:'text/csv;charset=utf-8'});
+      const url=URL.createObjectURL(blob);
+      const a=document.createElement('a');a.href=url;a.download=filename;document.body.appendChild(a);a.click();a.remove();
+      setTimeout(()=>URL.revokeObjectURL(url),1000);
+    }
+    $('refresh').addEventListener('click',query);
+    $('csv').addEventListener('click',()=>{
+      if(!report)return;
+      downloadCSV(`mistickets-1373-secciones-${report.at.slice(0,10)}.csv`,['fecha_utc','evento','categoria','seccion','id_seccion','ocupados','disponibles','excluidos','otros','aforo','porcentaje_ocupacion','precio_base_mxn','cargo_mxn','precio_publico_mxn'],report.rows.map(r=>[report.at,EVENT,r.category,r.name,r.id,r.occupied,r.available,r.excluded,r.other,r.capacity,percent(r.occupied,r.capacity),r.base,r.fee,r.price]));
+    });
+    $('historyCsv').addEventListener('click',()=>downloadCSV(`mistickets-1373-historial-${new Date().toISOString().slice(0,10)}.csv`,['fecha_utc','ocupados','disponibles','aforo'],saved.history.map(h=>[h.at,h.occupied,h.available,h.capacity])));
+    query();
+  })();
+  </script>
+</body>
+</html>
